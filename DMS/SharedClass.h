@@ -5,6 +5,10 @@
 //  Created by macbook on 23/11/16.
 //  Copyright © 2016 Falconnect Technologies Pvt Ltd. All rights reserved.
 //
+#define UIColorFromRGB(rgbValue) [UIColor \
+colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
+green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
+blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -37,11 +41,14 @@
 @property (nonatomic, retain) NSDictionary * appDict;
 @property (nonatomic, retain) NSDictionary * LoginDict;
 @property (nonatomic, retain) NSString * Cityname;
-@property (nonatomic, retain) NSString * sityName;
+@property (nonatomic, retain) NSString * siteName;
 
 @property (nonatomic, retain) NSDictionary * searchPageDict;
 @property (nonatomic,retain) NSArray *footerArray;
-@property (nonatomic,retain) NSArray *footerText;
+@property (nonatomic,retain) NSArray *footerText, *inventoryFooterText;
+
+@property (nonatomic,retain) NSArray *siteNameArray;
+
 
 @property (nonatomic)int collectionZ;
 

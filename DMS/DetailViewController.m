@@ -29,10 +29,20 @@
 
     appDelegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
 
+    [self web];
 
     // Do any additional setup after loading the view.
     
 }
+
+-(void)web
+{
+    NSURL *url=[NSURL URLWithString:@"http://52.220.105.165/works/html/dms%2010-12/add-listing.html"];
+    NSURLRequest *request=[NSURLRequest requestWithURL:url];
+    [webView loadRequest:request];
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -87,7 +87,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
                   @"Wagon", nil];
     
     ObjShared.Cityname=@"Select City";
-    
+    ObjShared.siteName=@"Select sites";
     
     // Corner Radius for Enter button
     search.layer.cornerRadius = 10;
@@ -98,9 +98,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     search.layer.shadowOpacity = 0.2;
     search.layer.shadowRadius = 2;
     search.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
-    
-    [self callMethod];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -116,8 +113,8 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     ObjShared.sharedDelegate = (id)self;
     
     [showWithoutFooter setTitle:ObjShared.Cityname forState:UIControlStateNormal];
-    [showWithMultipleSelection setTitle:ObjShared.sityName forState:UIControlStateNormal];
-
+    [showWithMultipleSelection setTitle:ObjShared.siteName forState:UIControlStateNormal];
+    [self callMethod];
 
     NSLog(@"city--->%@",ObjShared.Cityname);
     NSLog(@"hello world");
@@ -219,11 +216,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 - (NSString *)czpickerView:(CZPickerView *)pickerView
                titleForRow:(NSInteger)row
 {
-    if([pickerView isEqual:self.pickerWithImage])
-    {
-        return [[dashDict valueForKey:@"model_city"]valueForKey:@"city_name"][row];
-    }
-    else if ([pickerView isEqual:self.pickerWithValue])
+    if ([pickerView isEqual:self.pickerWithValue])
     {
         if (segValue == 0)
         {
@@ -235,7 +228,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
             return [[dashDict valueForKey:@"model_make"]valueForKey:@"makename"][row];
         }
     }
-    else if ([pickerView isEqual:self.PickerWithVehicle])
+    else
     {
         if (segValue == 0)
         {
@@ -248,19 +241,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
             return  [[modelDict valueForKey:@"model_makeid"]valueForKey:@"model_name"][row];
         }
     }
-    else
-    {
-        return  [[dashDict valueForKey:@"site_names"]valueForKey:@"sitename"][row];
-    }
 }
 
 - (NSInteger)numberOfRowsInPickerView:(CZPickerView *)pickerView
 {
-    if([pickerView isEqual:self.pickerWithImage])
-    {
-        return [[[dashDict valueForKey:@"model_city"]valueForKey:@"city_name"] count];
-    }
-    else if ([pickerView isEqual:self.pickerWithValue])
+    if ([pickerView isEqual:self.pickerWithValue])
     {
         if (segValue == 0)
         {
@@ -272,7 +257,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
             return [[[dashDict valueForKey:@"model_make"]valueForKey:@"makename"]count];
         }
     }
-    else if ([pickerView isEqual:self.PickerWithVehicle])
+    else
     {
         if (segValue == 0)
         {
@@ -285,20 +270,12 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
                return [[[modelDict valueForKey:@"model_makeid"]valueForKey:@"model_name"] count];
         }
     }
-    else
-    {
-        return [[[dashDict valueForKey:@"site_names"]valueForKey:@"sitename"]count];
-
-    }
+    
 }
 - (void)czpickerView:(CZPickerView *)pickerView didConfirmWithItemAtRow:(NSInteger)row
 {
-    if([pickerView isEqual:self.pickerWithImage])
-    {
-        NSString * butName = [NSString stringWithFormat:@"%@",[[dashDict valueForKey:@"model_city"]valueForKey:@"city_name"][row]];
-        [showWithoutFooter setTitle:butName forState:UIControlStateNormal];
-    }
-    else if ([pickerView isEqual:self.pickerWithValue])
+    
+    if ([pickerView isEqual:self.pickerWithValue])
     {
         if (segValue == 0)
         {
@@ -316,7 +293,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         }
 
     }
-    else if ([pickerView isEqual:self.PickerWithVehicle])
+    else
     {
         if (segValue == 0)
         {
@@ -332,24 +309,13 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         }
 
     }
-    else
-    {
-//        NSString * butVeh = [NSString stringWithFormat:@"%@",[[modelDict valueForKey:@"site_names"]valueForKey:@"sitename"][row]];
-
-        NSLog(@"%@ is chosen!", [[dashDict valueForKey:@"site_names"]valueForKey:@"sitename"][row]);
-    }
+   
     [self.navigationController setNavigationBarHidden:YES];
 }
 
 - (void)czpickerView:(CZPickerView *)pickerView didConfirmWithItemsAtRows:(NSArray *)rows
 {
-    if([pickerView isEqual:self.pickerWithImage])
-    {
-        NSString * butName = [NSString stringWithFormat:@"%@",[[[dashDict valueForKey:@"model_city"]valueForKey:@"city_name"] objectAtIndex:0]];
-
-        [showWithoutFooter setTitle:butName forState:UIControlStateNormal];
-    }
-    else if ([pickerView isEqual:self.pickerWithValue])
+     if ([pickerView isEqual:self.pickerWithValue])
     {
         if (segValue  ==  0)
         {
@@ -364,7 +330,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
         }
     }
-    else if ([pickerView isEqual:self.PickerWithVehicle])
+    else
     {
         if (segValue  ==  0)
         {
@@ -375,26 +341,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
         {
             NSString * butVehOne = [NSString stringWithFormat:@"%@",[[[modelDict valueForKey:@"model_makeid"]valueForKey:@"model_name"] objectAtIndex:0]];
             [showVehicle setTitle:butVehOne forState:UIControlStateNormal];
-        }
-    }
-    else
-    {
-        array1 = [[NSMutableArray alloc] init];
-        
-        for (NSNumber *ns in rows)
-        {
-            NSInteger row = [ns integerValue];
-            [array1 addObject:[[dashDict valueForKey:@"site_names"]valueForKey:@"sitename"][row]];
-        }
-        if (array1.count == 1)
-        {
-            NSString * butNameTwo = [NSString stringWithFormat:@"%@ Selected",[array1 objectAtIndex:0]];
-            [showWithMultipleSelection setTitle:butNameTwo forState:UIControlStateNormal];
-        }
-        else
-        {
-            NSString * butName1 = [NSString stringWithFormat:@"%lu sites selected",(unsigned long)array1.count];
-            [showWithMultipleSelection setTitle:butName1 forState:UIControlStateNormal];
         }
     }
 }
@@ -423,26 +369,13 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 - (IBAction)showWithMultipleSelection:(id)sender
 {
-//    CZPickerView *picker = [[CZPickerView alloc] initWithHeaderTitle:@"Car Sites" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
-//    picker.delegate = self;
-//    picker.dataSource = self;
-//    picker.allowMultipleSelection = YES;
-//    [picker show];
-    
     
     SiteViewController *cityVC=[self.storyboard instantiateViewControllerWithIdentifier:@"SiteViewController"];
     [self presentViewController:cityVC animated:YES completion: nil];
 
 }
 - (IBAction)showWithoutFooter:(id)sender
-{
-//    self.pickerWithImage = [[CZPickerView alloc] initWithHeaderTitle:@"City" cancelButtonTitle:@"Cancel" confirmButtonTitle:@"Confirm"];
-////    pickerWithoutFooter.headerTitleFont = [UIFont systemFontOfSize: 40];
-//    self.pickerWithImage.delegate = self;
-//    self.pickerWithImage.dataSource = self;
-//    self.pickerWithImage.needFooterView = NO;
-//    [self.pickerWithImage show];
-    
+{    
     SelectCityViewController *cityVC=[self.storyboard instantiateViewControllerWithIdentifier:@"SelectCityViewController"];
     [self presentViewController:cityVC animated:YES completion: nil];
 

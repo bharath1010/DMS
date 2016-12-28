@@ -18,6 +18,5 @@
     IBOutlet UITextField * bidText;
 }
 -(IBAction)bidButton:(id)sender;
--(IBAction)back:(id)sender;
-
+-(IBAction)backButton:(id)sender;
 @end

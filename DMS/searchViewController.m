@@ -16,13 +16,14 @@
 #import "bidsPostedViewController.h"
 #import "MyQueriesViewController.h"
 #import "DashboardViewController.h"
+#import "DetailViewController.h"
 
 #define UIColorFromRGB(rgbValue) [UIColor \
 colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 \
 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
-@interface searchViewController ()<TLTagsControlDelegate,CZPickerViewDataSource, CZPickerViewDelegate>
+@interface searchViewController ()<TLTagsControlDelegate>
 {
     SearchTableViewCell *searchCell;
     headerTableViewCell *header;
@@ -52,6 +53,7 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
                    @"queries-blue.png",
                    @"bids-blue.png",
                    @"funding-blue.png", nil];
+    
     footerText = [[NSArray alloc] initWithObjects:@"Search",
                   @"Saved Cars",
                   @"My Queries",
@@ -223,6 +225,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"selected row----> %ld",(long)indexPath.row);
+    
+    DetailViewController *DetailVC =[self.storyboard instantiateViewControllerWithIdentifier:@"DetailViewController"];
+    [[self navigationController] pushViewController:DetailVC animated:NO];
+
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

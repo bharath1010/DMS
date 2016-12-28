@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface FundingDetailViewController : UIViewController
+{
+    IBOutlet UIButton * revokeButton;
+}
 -(IBAction)back:(id)sender;
 
 @end

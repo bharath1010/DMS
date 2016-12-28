@@ -31,7 +31,15 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     ObjShared = [SharedClass sharedInstance];
 
+    // Corner Radius for Enter button
+    submitButton.layer.cornerRadius = 10;
+    submitButton.layer.masksToBounds = NO;
+    submitButton.layer.shadowColor = [UIColor blackColor].CGColor;
     
+    // Shadow Effect for Enter button
+    submitButton.layer.shadowOpacity = 0.2;
+    submitButton.layer.shadowRadius = 2;
+    submitButton.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
     // Do any additional setup after loading the view.
 }
 

@@ -36,6 +36,17 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     name=[[NSArray alloc]initWithObjects:@"Dealer Name",@"Mobile",@"E-mail",@"Date of Applied",@"Amount",@"City",@"Loan for",@"Status", nil];
     dealer=[[NSArray alloc]initWithObjects:@"ABC-0001",@"12341234",@"abc@gmail.com",@"11-11-2016",@"Rs 5,00,000",@"Chennai",@"Renault Duster",@"On going", nil];
+    
+    // Corner Radius for Enter button
+    revokeButton.layer.cornerRadius = 10;
+    revokeButton.layer.masksToBounds = NO;
+    revokeButton.layer.shadowColor = [UIColor blackColor].CGColor;
+    
+    // Shadow Effect for Enter button
+    revokeButton.layer.shadowOpacity = 0.2;
+    revokeButton.layer.shadowRadius = 2;
+    revokeButton.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+
 
 
     // Do any additional setup after loading the view.
@@ -70,7 +81,10 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
+-(IBAction)revokeAction:(id)sender
+{
+    [[self navigationController] popViewControllerAnimated:YES];
+}
 
 #pragma mark - Collection View delegate
 
@@ -171,15 +185,5 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     NSLog(@"selected row----> %ld",(long)indexPath.row);
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

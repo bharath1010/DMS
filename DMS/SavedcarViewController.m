@@ -79,6 +79,11 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)showLeftMenuPressed:(id)sender
+{
+    [self.menuContainerViewController toggleLeftSideMenuCompletion:nil];
+}
+
 
 #pragma mark - Collection View delegate
 
@@ -225,12 +230,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     
     [ObjShared callWebServiceWith_DomainName:@"api_save_car" postData:likePara];
 }
-
--(IBAction)back:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 //Status bar hidden
 -(BOOL)prefersStatusBarHidden

@@ -19,6 +19,7 @@
     IBOutlet UILabel *request;
     IBOutlet UIImageView *financeImg;
     IBOutlet UIImageView *dealerImg;
+    IBOutlet UIButton * submitButton;
 }
 -(IBAction)back:(id)sender;
 -(IBAction)sumbit:(id)sender;

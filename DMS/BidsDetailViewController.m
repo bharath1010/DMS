@@ -61,12 +61,6 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
     [ObjShared callWebServiceWith_DomainName:@"apibuyid" postData:para];
 }
 
--(IBAction)back:(id)sender
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-
 #pragma mark - Collection View delegate
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
